@@ -9,26 +9,24 @@ let i=0;
 window.addEventListener("DOMContentLoaded",() => {
     console.log("Testing...");
 
-    function AutoLoad(){
-        let response=axios
-                .get("https://crudcrud.com/api/d4fa4cc280c64d2bb44e971ef17f6b30/Data")   
-                return response;
-                
-    }
-    async function automain(){
+    async function AutoLoad(){
+        
         try{
-            await AutoLoad();
-            for(var i=0;i<response.data.length;i++){
-                ShowNewUser(response.data[i])
-            }
+            let response=await axios.get("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data") 
+            let a = response.data;
+    
+            a.forEach((element)=>{
+                ShowNewUser(element)
+            });
+            
         }
-        catch(err){
-           
+        catch(err){   
             console.log(`Error : Something went wrong`);
             console.log(` Error type = ${err}`);
         }
     }
-    automain();
+AutoLoad();
+    
 });
 
 
@@ -42,7 +40,7 @@ btn.addEventListener('click',(e)=>{
         };
 
     function assigns(){
-        let res = axios.post("https://crudcrud.com/api/d4fa4cc280c64d2bb44e971ef17f6b30/Data",myobj)
+        let res = axios.post("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data",myobj)
         return res;
     }
 
@@ -84,7 +82,7 @@ function ShowNewUser(userdetails){
 function deleteser(userid){
     function deleteapi(){
        let Del= axios
-        .delete(`https://crudcrud.com/api/d4fa4cc280c64d2bb44e971ef17f6b30/Data/${userid}`)
+        .delete(`https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data/${userid}`)
         return Del;
     }
     async function main(){
