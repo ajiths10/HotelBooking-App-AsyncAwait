@@ -9,16 +9,14 @@ let i=0;
 window.addEventListener("DOMContentLoaded",() => {
     console.log("Testing...");
 
-    async function AutoLoad(){
-        
+    async function AutoLoad(){    
         try{
-            let response=await axios.get("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data") 
+            let response=await axios.get("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data");
             let a = response.data;
     
             a.forEach((element)=>{
                 ShowNewUser(element)
-            });
-            
+            }); 
         }
         catch(err){   
             console.log(`Error : Something went wrong`);
@@ -26,9 +24,7 @@ window.addEventListener("DOMContentLoaded",() => {
         }
     }
 AutoLoad();
-    
 });
-
 
 
 //Adding new user details
@@ -39,15 +35,10 @@ btn.addEventListener('click',(e)=>{
         email:emailbox.value,
         };
 
-    function assigns(){
-        let res = axios.post("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data",myobj)
-        return res;
-    }
-
     async function main(){     
         try{
-            await assigns();
-                ShowNewUser(myobj)
+             let res = await axios.post("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data",myobj);   
+             ShowNewUser(res.data)
                 console.log(" Stored Sucessfull")
         }catch(err){
             console.log(`Error : Something went wrong`);
@@ -56,6 +47,7 @@ btn.addEventListener('click',(e)=>{
     }     
 main();
 })
+
 
 
 function ShowNewUser(userdetails){
@@ -100,6 +92,7 @@ main();
 }
 
 
+
 //remove user from the frontend
 function removeUserFromScreen(userid){
     const parentNode=document.getElementById('itemss');
@@ -108,7 +101,6 @@ function removeUserFromScreen(userid){
         parentNode.removeChild(childNodeToBeDeleted);
     }
 }
-
 
 
 //edit user details
