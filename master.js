@@ -6,10 +6,10 @@ let i=0;
 
 
 //scan all existing element from server 
-window.addEventListener("DOMContentLoaded",() => {
+window.addEventListener("DOMContentLoaded",async() => {
     console.log("Testing...");
 
-    async function AutoLoad(){    
+        
         try{
             let response=await axios.get("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data");
             let a = response.data;
@@ -22,20 +22,20 @@ window.addEventListener("DOMContentLoaded",() => {
             console.log(`Error : Something went wrong`);
             console.log(` Error type = ${err}`);
         }
-    }
-AutoLoad();
+    
+
 });
 
 
 //Adding new user details
-btn.addEventListener('click',(e)=>{
+btn.addEventListener('click',async(e)=>{
     e.preventDefault();
     myobj={
         name:namebox.value,
         email:emailbox.value,
         };
 
-    async function main(){     
+    
         try{
              let res = await axios.post("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data",myobj);   
              ShowNewUser(res.data)
@@ -44,8 +44,8 @@ btn.addEventListener('click',(e)=>{
             console.log(`Error : Something went wrong`);
             console.log(` Error type = ${err}`);
         }
-    }     
-main();
+     
+
 })
 
 
