@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded",async() => {
 
         
         try{
-            let response=await axios.get("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data");
+            let response=await axios.get("http://localhost:4000/admin/getall");
             let a = response.data;
     
             a.forEach((element)=>{
@@ -31,13 +31,11 @@ window.addEventListener("DOMContentLoaded",async() => {
 btn.addEventListener('click',async(e)=>{
     e.preventDefault();
     myobj={
-        name:namebox.value,
-        email:emailbox.value,
+        title: namebox.value,
+        email: emailbox.value,
         };
-
-    
         try{
-             let res = await axios.post("https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data",myobj);   
+             let res = await axios.post("http://localhost:4000/admin/adduser",myobj);   
              ShowNewUser(res.data)
                 console.log(" Stored Sucessfull")
         }catch(err){
@@ -60,10 +58,10 @@ function ShowNewUser(userdetails){
     }
 
     let MainNodeVariable=document.getElementById('itemss');
-    let childHtml=`<li id=${userdetails._id}> 
-                        <b>Name:</b> ${userdetails.name} -<b> Email:</b> ${userdetails.email} 
-                        <button onclick=deleteser('${userdetails._id}') class='buttonDly'> Remove </button> 
-                        <button onclick=removeuser('${userdetails.email}','${userdetails.name}','${userdetails._id}') class="buttonEdt"> edit </button> 
+    let childHtml=`<li id=${userdetails.id}> 
+                        <b>Name:</b> ${userdetails.title} -<b> Email:</b> ${userdetails.email} 
+                        <button onclick=deleteser('${userdetails.id}') class='buttonDly'> Remove </button> 
+                        <button onclick=removeuser('${userdetails.email}','${userdetails.title}','${userdetails.id}') class="buttonEdt"> edit </button> 
                     </li> `;
     MainNodeVariable.innerHTML=MainNodeVariable.innerHTML + childHtml;
 }
@@ -74,7 +72,7 @@ function ShowNewUser(userdetails){
 function deleteser(userid){
     function deleteapi(){
        let Del= axios
-        .delete(`https://crudcrud.com/api/910b5fab1f0d438ea05d865da4bdd0c3/Data/${userid}`)
+        .post(`http://localhost:4000/admin/deleteuser`,{id: userid})
         return Del;
     }
     async function main(){

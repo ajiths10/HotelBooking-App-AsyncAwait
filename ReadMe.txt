@@ -1,12 +1,8 @@
 //Testing purpose
 //Ajith-s
 
-Collecting user details by dynamicaly using Get and Post
+Take clone https://github.com/ajiths10/AddUser-SQL-db-Nodejs.git 
+API - https://github.com/ajiths10/AddUser-SQL-db-Nodejs.git
 
-Aslo using Async And Await
-
-Using try and catch
-
-more optimised version
-
+Project url - https://github.com/ajiths10/AddUser-SQL-db-Nodejs
 //Testing purpose.
